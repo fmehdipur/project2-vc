@@ -10,10 +10,11 @@ esoph_prediction <- function(age, alc, tob){
   
   nca<- mca$coefficients[1]+ mca$coefficients[2]*age+ mca$coefficients[3]*alc+ mca$coefficients[4]*tob
   nco<- mco$coefficients[1]+ mco$coefficients[2]*age+ mco$coefficients[3]*alc+ mco$coefficients[4]*tob
-  es_prob<- round((nca/(nca+nco))*100,  digits= 2)
-  if ( es_prob>= 100 )
-    es_prob<- 99.00
-  else if (es_prob< 0)
+  es_prob<- round((nca/(nca+nco))*100,  digits= 1)
+  
+  if ( es_prob>= 90 )
+    es_prob<- 90.00
+  else if (es_prob< 0.00)
     es_prob<- 0.00
   return(es_prob)
   
@@ -22,7 +23,7 @@ esoph_prediction <- function(age, alc, tob){
 
 shinyServer(
   function(input, output){
-    output$inputValues <- renderPrint({paste("Age: ", input$age, "Alcohol CCs/day: ", input$alc, "Somking grams/day: ", input$tob)})
+    output$inputValues <- renderPrint({paste("Age:", input$age, "Alcohol CCs/day:", input$alc, "Somking grams/day:", input$tob)})
     output$es_prob <- renderPrint({paste(esoph_prediction(as.numeric(input$age), as.numeric(input$alc), as.numeric(input$tob)), "%")})             
     
   }

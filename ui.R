@@ -1,6 +1,4 @@
-
 library(shiny)
-
 shinyUI(pageWithSidebar(
   
   headerPanel('Prediction of Ensophageal Cancer'),
@@ -29,7 +27,7 @@ shinyUI(pageWithSidebar(
       In this tool, we fit a linear model to the esoph dataset for modeling the effect of above parameters
       on the probability of getting esophageal cancer. 
       User should choose among various age groups and alcohol and tobaco consumption
-      and get the probability value as the output.'),
+      and get the probability value as the output. The prediction tools has been created with R Shiny.'),
     
     h4('Source'),
     p('Breslow, N. E. and Day, N. E. (1980) Statistical Methods in Cancer Research. Volume 1: The Analysis of Case-Control Studies. IARC Lyon / Oxford University Press.')
